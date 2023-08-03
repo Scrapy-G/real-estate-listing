@@ -1,0 +1,71 @@
+<div class="p-3 border">
+  <h3>Filter</h3>
+  <form [formGroup]="filterForm" (ngSubmit)="applyFilter()">
+    <mat-form-field>
+      <mat-label>Price from</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="minPrice"
+        placeholder="Min Price"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Price to</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="maxPrice"
+        placeholder="Max Price"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Property Type</mat-label>
+      <mat-select formControlName="type" class="text-capitalize">
+        <mat-option
+          *ngFor="let propertyType of getPropertyTypes()"
+          [value]="propertyType"
+          class="text-capitalize"
+        >
+          {{ propertyType }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Bedrooms</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="bedrooms"
+        placeholder="Bedrooms"
+      />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Bathrooms</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="bathrooms"
+        placeholder="Bathrooms"
+      />
+    </mat-form-field>
+
+    <div class="buttons">
+      <button mat-flat-button color="primary" type="submit">
+        Apply Filter
+      </button>
+      <button
+        mat-stroked-button
+        color="primary"
+        class="mx-2"
+        (click)="clearFilter()"
+      >
+        Clear Filter
+      </button>
+    </div>
+  </form>
+</div>

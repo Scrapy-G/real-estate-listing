@@ -1,0 +1,75 @@
+<div class="container py-5">
+  <h1 class="mb-4">{{ editPropertyId ? 'Edit Property' : 'Add Property' }}</h1>
+
+  <div class="row">
+    <div class="col-md-7">
+      <form [formGroup]="estatePropertyForm" (ngSubmit)="saveProperty()">
+        <mat-form-field appearance="fill">
+          <mat-label>Address</mat-label>
+          <input matInput formControlName="address" required />
+          <mat-error *ngIf="getFormControl('address').hasError('required')">
+            Address is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Price</mat-label>
+          <input matInput formControlName="price" type="number" required />
+          <mat-error *ngIf="getFormControl('price').hasError('required')">
+            Price is required.
+          </mat-error>
+          <mat-error *ngIf="getFormControl('price').hasError('min')">
+            Price must be a positive number.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type" required class="text-capitalize">
+            <mat-option
+              *ngFor="let propertyType of getPropertyTypes()"
+              [value]="propertyType"
+              class="text-capitalize"
+            >
+              {{ propertyType }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="getFormControl('type').hasError('required')">
+            Type is required.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Bedrooms</mat-label>
+          <input matInput formControlName="bedrooms" type="number" required />
+          <mat-error *ngIf="getFormControl('bedrooms').hasError('required')">
+            Bedrooms is required.
+          </mat-error>
+          <mat-error *ngIf="getFormControl('bedrooms').hasError('min')">
+            Bedrooms must be at least 0.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Bathrooms</mat-label>
+          <input matInput formControlName="bathrooms" type="number" required />
+          <mat-error *ngIf="getFormControl('bathrooms').hasError('required')">
+            Bathrooms is required.
+          </mat-error>
+          <mat-error *ngIf="getFormControl('bathrooms').hasError('min')">
+            Bathrooms must be at least 0.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput formControlName="description"></textarea>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit">
+          {{ editPropertyId ? 'Update property' : 'Add property' }}
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

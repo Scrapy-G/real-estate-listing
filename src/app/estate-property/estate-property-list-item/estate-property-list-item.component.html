@@ -1,0 +1,31 @@
+<mat-card class="border">
+  <mat-card-header>
+    <mat-card-subtitle>Address</mat-card-subtitle>
+    <mat-card-title>{{ estateProperty.address }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-divider></mat-divider>
+    <p class="text-muted mt-4 property-description">{{ estateProperty.description }}</p>
+    <p>Bedrooms: {{ estateProperty.bedrooms }}</p>
+    <p>Bathrooms: {{ estateProperty.bathrooms }}</p>
+    <p>
+      Type:
+      <mat-chip class="text-capitalize">
+        {{ estateProperty.type }}
+      </mat-chip>
+    </p>
+    <h1 class="text-end">
+      ${{ estateProperty.price | number : '1.0' : 'en-US' }}
+    </h1>
+    <mat-divider></mat-divider>
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button
+      mat-flat-button
+      color="accent"
+      [routerLink]="[estateProperty.id, 'edit']"
+    >
+      Edit
+    </button>
+  </mat-card-actions>
+</mat-card>

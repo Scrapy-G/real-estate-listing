@@ -1,0 +1,31 @@
+<div class="container py-5">
+  <div class="d-flex justify-content-between mb-4">
+    <h1>Real Estate Properties</h1>
+    <a mat-flat-button color="primary" routerLink="new">Add Property</a>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <app-estate-property-filter-form
+        (filterChanged)="onFilterChange($event)"
+      ></app-estate-property-filter-form>
+      <div class="d-flex justify-content-end mt-4">
+        <app-estate-property-sort
+          [value]="sortOption"
+          (sortChange)="onSortChange($any($event))"
+        ></app-estate-property-sort>
+      </div>
+    </div>
+    <div
+      class="col-12 col-sm-6 col-lg-4 col-xl-3 mb-4"
+      *ngFor="let estateProperty of estateProperties"
+    >
+      <app-estate-property-list-item [estateProperty]="estateProperty">
+      </app-estate-property-list-item>
+    </div>
+
+    <div *ngIf="estateProperties.length === 0" class="col">
+      <div class="p-3 bg-light">No properties found.</div>
+    </div>
+  </div>
+</div>

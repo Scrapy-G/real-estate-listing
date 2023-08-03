@@ -1,0 +1,15 @@
+mat-card-header {
+  height: 120px;
+}
+
+mat-card-content {
+  height: 240px;
+}
+
+.property-description {
+  height: 3em;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
